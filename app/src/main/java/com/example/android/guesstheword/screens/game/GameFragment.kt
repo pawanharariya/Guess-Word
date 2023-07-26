@@ -1,6 +1,7 @@
 package com.example.android.guesstheword.screens.game
 
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +12,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.android.guesstheword.R
-import com.example.android.guesstheword.databinding.GameFragmentBinding
+import com.example.android.guesstheword.databinding.FragmentGameBinding
 
 /**
  * Fragment where the game is played
  */
 class GameFragment : Fragment() {
 
-    private lateinit var binding: GameFragmentBinding
+    private lateinit var binding: FragmentGameBinding
 
     private lateinit var viewModel: GameViewModel
     override fun onCreateView(
@@ -29,7 +30,7 @@ class GameFragment : Fragment() {
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.game_fragment,
+            R.layout.fragment_game,
             container,
             false
         )
@@ -53,11 +54,14 @@ class GameFragment : Fragment() {
             binding.wordText.text = newWord
         })
 
-        viewModel.eventGamFinished.observe(viewLifecycleOwner, Observer { hasFinished ->
-            if (hasFinished) {
+        viewModel.eventGamFinished.observe(viewLifecycleOwner, Observer { isFinished ->
+            if (isFinished)
                 gameFinished()
-                viewModel.onGameFinishComplete()
-            }
+        })
+
+
+        viewModel.currentTime.observe(viewLifecycleOwner, Observer { newTime ->
+            binding.timerText.text = DateUtils.formatElapsedTime(newTime)
         })
         return binding.root
     }
@@ -69,5 +73,6 @@ class GameFragment : Fragment() {
     private fun gameFinished() {
         val action = GameFragmentDirections.actionGameToScore(viewModel.score.value ?: 0)
         findNavController(this).navigate(action)
+        viewModel.onGameFinishComplete()
     }
 }

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.guesstheword.R
-import com.example.android.guesstheword.databinding.ScoreFragmentBinding
+import com.example.android.guesstheword.databinding.FragmentScoreBinding
 
 /**
  * Fragment where the final score is shown, after the game is over
@@ -20,12 +20,12 @@ class ScoreFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         // Inflate view and obtain an instance of the binding class.
-        val binding: ScoreFragmentBinding = DataBindingUtil.inflate(
+        val binding: FragmentScoreBinding = DataBindingUtil.inflate(
             inflater,
-            R.layout.score_fragment,
+            R.layout.fragment_score,
             container,
             false
         )
