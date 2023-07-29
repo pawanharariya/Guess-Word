@@ -1,14 +1,14 @@
 # Guess Word #
 Guess Word is a multiplayer game. A random word will be displayed on the screen, and one of the player will enact that word, the other player has to guess that word. For every correct guess the player gets 1 point and skipping the word decreases the score by 1. The player has to guess the word within 2 minutes, else the game ends and at the end the total score is shown.
 
+When the device configuration changes, the the data in the activity/fragment is lost, as the activity/fragment is recreated. This issue can be addressed by saving data in bundle in `onSaveInstanceState` callback. But it has some limitaions, like extra logic to save and retrieve the data and limited size. Hence, in this project a better way is used to solve this issue using Lifecycle Library's architecture components called ViewModel and LiveData.
+
+Note : To see how this problem can be solved using `onSaveInstanceState`, please refer this [Dessert Pusher project](https://github.com/pawanharariya/Dessert-Pusher).
+
 ## App Preview ##
 <img alt="Guess Word preview 1" src="https://github.com/pawanharariya/Guess-Word/assets/43620548/e44bb7c3-2632-47c8-b378-10f025b37642" width="220" >
 <img alt="Guess Word preview 2" src="https://github.com/pawanharariya/Guess-Word/assets/43620548/d71a20ce-ac60-44c5-abbc-249fa6aaa6d1)" width="220">
 <img alt="Guess Word preview 3" src="https://github.com/pawanharariya/Guess-Word/assets/43620548/71a0133c-bc5b-4a99-b243-089e1e7b4402" height="250">
-<br>
-When the device configuration changes, the the data in the activity/fragment is lost, as the activity/fragment is recreated. This issue can be addressed by saving data in bundle in `onSaveInstanceState` callback. But it has some limitaions, like extra logic to save and retrieve the data and limited size. Hence, in this project a better way is used to solve this issue using Lifecycle Library's architecture components called ViewModel and LiveData.
-
-Note : To see how this problem can be solved using `onSaveInstanceState`, please refer this Dessert Pusher project.
 
 ## Application Architecture ##
 It is a way of designing an application's classes and relationships between them. This makes code organised, modular, debuggable, easily manageable and testable. However, there isn't a perfect architectural style for all needs, and it depends on circumstances and needs. Details of our app's architecture are given below:
