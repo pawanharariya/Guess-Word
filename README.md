@@ -1,5 +1,5 @@
 # Guess Word #
-Guess Word is a multiplayer game. A random word will be displayed on the screen, and one of the player will enact that word, the other player has to guess that word. For every correct guess the player gets 1 point and skipping the word decreases the score by 1. The player has to guess the word within 2 minutes, else the game ends and at the end the total score is shown.
+Guess Word is a multiplayer game in which a random word will be displayed on the screen, and one of the player will enact that word, the other player has to guess that word. For every correct guess the player gets 1 point and skipping the word decreases the score by 1. The player has to guess the word within 2 minutes, else the game ends and at the end the total score is shown.
 
 When the device configuration changes, the the data in the activity/fragment is lost, as the activity/fragment is recreated. This issue can be addressed by saving data in bundle in `onSaveInstanceState` callback. But it has some limitaions, like extra logic to save and retrieve the data and limited size. Hence, in this project a better way is used to solve this issue using Lifecycle Library's architecture components called ViewModel and LiveData.
 
