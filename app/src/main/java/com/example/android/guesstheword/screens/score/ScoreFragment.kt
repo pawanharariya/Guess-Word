@@ -25,7 +25,6 @@ class ScoreFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
-        // Inflate view and obtain an instance of the binding class.
         val binding: FragmentScoreBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_score, container, false
         )
@@ -36,6 +35,8 @@ class ScoreFragment : Fragment() {
         viewModel.score.observe(viewLifecycleOwner, Observer { finalScore ->
             binding.scoreText.text = finalScore.toString()
         })
+        binding.scoreViewModel = viewModel
+        binding.lifecycleOwner = this
         binding.playAgainButton.setOnClickListener { viewModel.onPlayAgain() }
         viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
             if (playAgain) {
