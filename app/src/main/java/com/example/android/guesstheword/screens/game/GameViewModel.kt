@@ -2,12 +2,10 @@ package com.example.android.guesstheword.screens.game
 
 import android.os.CountDownTimer
 import android.text.format.DateUtils
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-
 
 private val CORRECT_BUZZ_PATTERN = longArrayOf(100, 100, 100, 100, 100, 100)
 private val PANIC_BUZZ_PATTERN = longArrayOf(0, 200)
@@ -27,7 +25,7 @@ class GameViewModel : ViewModel() {
         const val ONE_SECOND = 1000L
 
         // This is the total time of the game
-        const val COUNTDOWN_TIME = 20_000L
+        const val COUNTDOWN_TIME = 120_000L
     }
 
     enum class BuzzType(val pattern: LongArray) {
@@ -72,7 +70,6 @@ class GameViewModel : ViewModel() {
         resetList()
         nextWord()
         _score.value = 0
-        Log.i("GameViewModel", "GameViewModel created")
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
             override fun onTick(millisUntilFinished: Long) {
                 _currentTime.value = millisUntilFinished / ONE_SECOND
@@ -93,7 +90,6 @@ class GameViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         timer.cancel()
-        Log.i("GameViewModel", "GameViewModel destroyed!")
     }
 
     /**

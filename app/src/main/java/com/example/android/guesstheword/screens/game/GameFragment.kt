@@ -4,7 +4,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +29,6 @@ class GameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_game,
@@ -38,17 +36,9 @@ class GameFragment : Fragment() {
             false
         )
 
-        Log.i("GameFragment", "Called ViewModelProvider")
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
         binding.gameViewModel = viewModel
         binding.lifecycleOwner = this
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
-
-        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
-            binding.wordText.text = newWord
-        })
 
         viewModel.eventGamFinished.observe(viewLifecycleOwner, Observer { isFinished ->
             if (isFinished)
@@ -63,7 +53,6 @@ class GameFragment : Fragment() {
         })
         return binding.root
     }
-
 
     /**
      * Called when the game is finished
